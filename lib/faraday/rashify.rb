@@ -62,3 +62,7 @@ module Faraday
     end
   end
 end
+
+
+# Deprecated alias(es)! These we can get rid of in the next major
+Faraday::Response::Rashify = FaradayMiddleware::Rashify = Faraday::Rashify
