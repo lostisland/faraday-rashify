@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'faraday'
-require "faraday/rashify/version"
+require 'faraday/rashify/version'
 
 module Faraday
   module Rashify

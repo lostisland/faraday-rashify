@@ -18,9 +18,9 @@ RSpec.describe Faraday::Rashify::Middleware do
     end
 
     context 'when using a Hash' do
-      let(:body) {
+      let(:body) do
         { 'name' => 'Erik Michaels-Ober', 'username' => 'sferik' }
-      }
+      end
 
       it 'does NOT create a Hashie::Rash since the content type does not match' do
         me = conn.get('/ok').body
@@ -37,9 +37,9 @@ RSpec.describe Faraday::Rashify::Middleware do
     end
 
     context 'when using a Hash' do
-      let(:body) {
+      let(:body) do
         { 'name' => 'Erik Michaels-Ober', 'username' => 'sferik' }
-      }
+      end
 
       it 'creates a Hashie::Rash since the content type matches' do
         me = conn.get('/ok').body
@@ -51,9 +51,9 @@ RSpec.describe Faraday::Rashify::Middleware do
 
   context 'when used without specific options' do
     context 'when the given body is a Hash' do
-      let(:body) {
+      let(:body) do
         { 'name' => 'Erik Michaels-Ober', 'username' => 'sferik' }
-      }
+      end
 
       it 'creates a Hashie::Rash' do
         me = conn.get('/ok').body
@@ -63,11 +63,10 @@ RSpec.describe Faraday::Rashify::Middleware do
       end
     end
 
-
     context 'when the given body is a String' do
-      let(:body) {
+      let(:body) do
         'Most amazing string EVER'
-      }
+      end
 
       it 'creates a String' do
         me = conn.get('/ok').body
@@ -77,9 +76,9 @@ RSpec.describe Faraday::Rashify::Middleware do
     end
 
     context 'when the given body is a hash with camelcase keys' do
-      let(:body) {
+      let(:body) do
         { 'name' => 'Erik Michaels-Ober', 'userName' => 'sferik' }
-      }
+      end
 
       it 'turn hashes into Hashie::Rash, and decamelcase the keys' do
         me = conn.get('/ok').body
@@ -90,9 +89,9 @@ RSpec.describe Faraday::Rashify::Middleware do
     end
 
     context 'when the given body is an array' do
-      let(:body) {
+      let(:body) do
         [123, 456]
-      }
+      end
 
       it 'passes arrays through' do
         values = conn.get('/ok').body
@@ -102,9 +101,9 @@ RSpec.describe Faraday::Rashify::Middleware do
     end
 
     context 'when the body is an array of hashes' do
-      let(:body) {
+      let(:body) do
         [{ 'username' => 'sferik' }, { 'username' => 'pengwynn' }]
-      }
+      end
 
       it 'turns hashes into Hashie::Rash objects' do
         us = conn.get('/ok').body
@@ -116,9 +115,9 @@ RSpec.describe Faraday::Rashify::Middleware do
     end
 
     context 'when the body has mixed arrays' do
-      let(:body) {
+      let(:body) do
         [123, { 'username' => 'sferik' }, 456]
-      }
+      end
 
       it 'turns hashes into Hashie::Rash object and passes other values through' do
         values = conn.get('/ok').body
