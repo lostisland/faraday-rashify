@@ -4,7 +4,10 @@ require 'faraday'
 require 'faraday/rashify/version'
 
 module Faraday
+  # This is a Faraday middleware which turns Hashes into Hashie::Mash::Rash
+  # objects, using the rash_alt gem.
   module Rashify
+    # This is a middleware which acts on responses, so it implements `on_complete`.
     class Middleware < ::Faraday::Middleware
       CONTENT_TYPE = 'Content-Type'
 
