@@ -21,10 +21,10 @@ RSpec.describe Faraday::Rashify::Middleware do
       let(:body) {
         { 'name' => 'Erik Michaels-Ober', 'username' => 'sferik' }
       }
-        
+
       it 'does NOT create a Hashie::Rash since the content type does not match' do
         me = conn.get('/ok').body
-  
+
         expect(me).to be_a(Hash)
         expect(me).to be body
       end
@@ -40,10 +40,10 @@ RSpec.describe Faraday::Rashify::Middleware do
       let(:body) {
         { 'name' => 'Erik Michaels-Ober', 'username' => 'sferik' }
       }
-        
+
       it 'creates a Hashie::Rash since the content type matches' do
         me = conn.get('/ok').body
-  
+
         expect(me.name).to eq 'Erik Michaels-Ober'
       end
     end
@@ -57,7 +57,7 @@ RSpec.describe Faraday::Rashify::Middleware do
 
       it 'creates a Hashie::Rash' do
         me = conn.get('/ok').body
-  
+
         expect(me.name).to eq('Erik Michaels-Ober')
         expect(me.username).to eq('sferik')
       end
@@ -71,7 +71,7 @@ RSpec.describe Faraday::Rashify::Middleware do
 
       it 'creates a String' do
         me = conn.get('/ok').body
-  
+
         expect(me).to eq('Most amazing string EVER')
       end
     end
@@ -83,7 +83,7 @@ RSpec.describe Faraday::Rashify::Middleware do
 
       it 'turn hashes into Hashie::Rash, and decamelcase the keys' do
         me = conn.get('/ok').body
-  
+
         expect(me.name).to eq('Erik Michaels-Ober')
         expect(me.user_name).to eq('sferik')
       end
@@ -108,7 +108,8 @@ RSpec.describe Faraday::Rashify::Middleware do
 
       it 'turns hashes into Hashie::Rash objects' do
         us = conn.get('/ok').body
-  
+
+        expect(us.first).to be_a(Hashie::Mash::Rash)
         expect(us.first.username).to eq('sferik')
         expect(us.last.username).to eq('pengwynn')
       end
@@ -121,11 +122,11 @@ RSpec.describe Faraday::Rashify::Middleware do
 
       it 'turns hashes into Hashie::Rash object and passes other values through' do
         values = conn.get('/ok').body
-  
+
         expect(values.first).to eq(123)
         expect(values.last).to eq(456)
         expect(values[1].username).to eq('sferik')
-      end  
+      end
     end
   end
 end

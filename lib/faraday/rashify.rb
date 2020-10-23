@@ -20,7 +20,7 @@ module Faraday
         @content_types = Array(options[:content_type])
       end
 
-      def on_response(env)
+      def on_complete(env)
         # return early if we should not process this request
         return unless should_process?(env)
 
