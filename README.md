@@ -1,8 +1,10 @@
 # Faraday::Rashify
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/faraday/rashify`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a Faraday middleware which turns Hashes into `Hashie::Mash::Rash` objects, using the [`rash_alt`](https://github.com/shishi/rash_alt) gem.
 
-TODO: Delete this and the text above, and describe your gem
+This very specific middleware has been extracted from the [`faraday_middleware`](https://github.com/lostisland/faraday_middleware) project.
+
+Original code created by @mislav with contributions by @shishi.
 
 ## Installation
 
@@ -22,7 +24,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This is a [Faraday middleware](https://lostisland.github.io/faraday/middleware/), and you need to mount it after parsing middlewares, such as `:json`.
+
+Example:
+
+```ruby
+Faraday.new(options) do |conn|
+  conn.request :json
+
+  conn.response :rashify
+  conn.response :json, content_type: /\bjson$/
+  conn.response :logger, logger, bodies: true
+
+  conn.adapter Faraday.default_adapter
+end
+```
+
+That is, this middleware only acts on Ruby Hashes and Arrays and makes the Hashes in there into `Hashie::Mash::Rash` objects.
 
 ## Development
 
@@ -32,7 +50,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/faraday-rashify. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/faraday-rashify/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/olleolleolle/faraday-rashify. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/olleolleolle/faraday-rashify/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
@@ -41,4 +59,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Faraday::Rashify project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/faraday-rashify/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Faraday::Rashify project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/olleolleolle/faraday-rashify/blob/master/CODE_OF_CONDUCT.md).
