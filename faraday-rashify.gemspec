@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'This middleware was extracted from faraday_middleware.'
   spec.homepage      = 'https://github.com/lostisland/faraday-rashify'
   spec.license       = 'MIT'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.4.0')
+  spec.required_ruby_version = Gem::Requirement.new('>= 2.5')
 
   spec.metadata['homepage_uri'] = 'https://github.com/lostisland/faraday-rashify'
   spec.metadata['source_code_uri'] = 'https://github.com/lostisland/faraday-rashify'
