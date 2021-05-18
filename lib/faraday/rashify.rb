@@ -44,9 +44,11 @@ module Faraday
       end
 
       def response_type(env)
-        type = env.dig(:response_headers, CONTENT_TYPE).to_s
-        type = type.split(';', 2).first if type.include?(';')
-        type
+        env
+          .dig(:response_headers, CONTENT_TYPE)
+          .to_s
+          .split(';', 2)
+          .first
       end
 
       def parse(body)
