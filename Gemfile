@@ -2,7 +2,6 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in faraday-rashify.gemspec
 gemspec
 
 gem 'faraday', github: 'lostisland/faraday'
