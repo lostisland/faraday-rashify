@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'faraday', '~> 1.0'
 gem 'rash_alt'
 
 gem 'rake', '~> 12.0'
