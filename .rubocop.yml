@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - tmp/**/*
     - pkg/**/*
+    - vendor/**/*
 
 Metrics/BlockLength:
   Exclude:
