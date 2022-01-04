@@ -2,10 +2,9 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in faraday-rashify.gemspec
 gemspec
 
-gem 'faraday', github: 'lostisland/faraday'
+gem 'faraday', '~> 1.0'
 gem 'rash_alt'
 
 gem 'rake', '~> 12.0'

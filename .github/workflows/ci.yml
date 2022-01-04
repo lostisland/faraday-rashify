@@ -22,38 +22,25 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7
+        bundler-cache: true
 
     - name: Rubocop
-      run: |
-        gem install bundler
-        bundle config set without 'development test'
-        bundle config set with 'lint'
-        bundle install
-        bundle exec rubocop --format progress
+      run: bundle exec rubocop --format progress
 
   build:
     needs: [linting]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: ['2.5', '2.6', '2.7', '3.0']
+        ruby: ['2.6', '2.7', '3.0', '3.1']
 
     steps:
+    - name: Install dependencies
+      run: sudo apt-get install libcurl4-openssl-dev
     - uses: actions/checkout@v1
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
-
-    - name: Install dependencies
-      run: |
-        sudo apt-get install libcurl4-openssl-dev
-
-    - name: Build
-      run: |
-        sudo apt-get install libcurl4-openssl-dev
-        gem install bundler -v '<2'
-        bundle install --jobs 4 --retry 3
-
+        bundler-cache: true # 'bundle install' and cache
     - name: Test
-      run: |
-        bundle exec rake
+      run: bundle exec rake
