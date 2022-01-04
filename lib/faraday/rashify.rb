@@ -2,6 +2,7 @@
 
 require 'faraday'
 require 'faraday/rashify/version'
+require 'rash'
 
 module Faraday
   # This is a Faraday middleware which turns Hashes into Hashie::Mash::Rash
@@ -13,10 +14,6 @@ module Faraday
 
       # Public: Converts parsed response bodies to a Hashie::Mash::Rash if they were of
       # Hash or Array type.
-      dependency do
-        require 'rash'
-      end
-
       def initialize(app = nil, options = {})
         super(app)
         @options = options
