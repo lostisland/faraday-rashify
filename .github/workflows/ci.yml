@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
 
     - name: Set up Ruby 2.7
       uses: ruby/setup-ruby@v1
@@ -37,7 +37,7 @@ jobs:
     steps:
     - name: Install dependencies
       run: sudo apt-get install libcurl4-openssl-dev
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
