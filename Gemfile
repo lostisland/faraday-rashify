@@ -6,7 +6,7 @@ gemspec
 
 gem 'rash_alt'
 
-gem 'rake', '~> 12.0'
+gem 'rake', '>= 12.0'
 
 group :test, :development do
   gem 'rspec', '~> 3.0'
